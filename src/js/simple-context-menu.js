@@ -8,7 +8,7 @@
             onHide: null,
             options: [],
         }, customConfig);
-
+        let currentElement = null;
         let el = $(this);
         let container = $('div.scm-container');
 
@@ -38,7 +38,7 @@
 
         el.contextmenu(function (e) {
             e.preventDefault()
-
+            currentElement = this; // Add this line
             let container = $('div.scm-container');
 
             let html = ''
@@ -86,7 +86,7 @@
                 let index = $(this).data('index')
                 let target = config.options[index]
                 if (target.action && typeof (target.action) === 'function') {
-                    target.action()
+                    target.action(currentElement)
                 }
             })
 
